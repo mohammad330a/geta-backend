@@ -1,0 +1,16 @@
+# python
+__pycache__
+*/__pycache__
+
+# ides / editors
+.idea
+.vscode
+
+# database
+db.sqlite3
+
+# virtual environment
+venv
+
+# environment variables file
+software_design_backend/.env
