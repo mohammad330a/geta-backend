@@ -36,7 +36,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'software_design_backend.renderer.CustomRenderer'
+    ]
 }
 
 AUTH_USER_MODEL = 'accounts.User'
