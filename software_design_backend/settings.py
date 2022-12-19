@@ -1,5 +1,6 @@
 from pathlib import Path
 import environ
+import datetime
 
 env = environ.Env()
 environ.Env.read_env()
@@ -26,9 +27,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'auth-token'
+JWT_AUTH_REFRESH_COOKIE = 'refresh-token'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=15)  # the value will change later
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
