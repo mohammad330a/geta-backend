@@ -3,3 +3,6 @@ Django==4.1.4
 
 # Environment Variable
 django-environ==0.9.0
+
+# DRF
+djangorestframework==3.14.0
