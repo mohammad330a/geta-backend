@@ -39,6 +39,8 @@ REST_FRAMEWORK = {
     )
 }
 
+AUTH_USER_MODEL = 'accounts.User'
+
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'auth-token'
 JWT_AUTH_REFRESH_COOKIE = 'refresh-token'
