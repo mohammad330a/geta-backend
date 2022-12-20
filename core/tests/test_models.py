@@ -18,5 +18,15 @@ class ModelTest(TestCase):
         self.assertEquals((str(request.course)), 'AdvanceProgramming')
         self.assertEquals(str(request.email), 'saleh@gmail.com')
         self.assertTrue(isinstance(request,Request))
-        self.assertNotEqual(request.created,datetime.now())
+        self.assertTrue(isinstance(request.created,datetime))
+        
+    
+    def testOffrrModel(self):
+        course = Course.objects.create(name="LinearAlgebra")
+        user = User.objects.create()
+        offer = Offer.objects.create(instructor= user, course= course, email="saleh@gmail.com", created= datetime.now())
+        self.assertEquals((str(offer.course)), 'LinearAlgebra')
+        self.assertEquals(str(offer.email), 'saleh@gmail.com')
+        self.assertTrue(isinstance(offer,Offer))
+        self.assertTrue(isinstance(offer.created,datetime))  
         
