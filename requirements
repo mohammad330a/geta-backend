@@ -3,3 +3,10 @@ Django==4.1.4
 
 # Environment Variable
 django-environ==0.9.0
+
+# DRF
+djangorestframework==3.14.0
+
+# Authentication
+dj-rest-auth==2.2.5
+djangorestframework-simplejwt==5.2.2
