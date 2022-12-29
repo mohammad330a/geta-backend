@@ -17,4 +17,10 @@ class CreateRequestSerializer(serializers.ModelSerializer):
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('id', 'student', 'course', 'telegram_id', 'email', 'description')
+        fields = ('id', 'instructor', 'course', 'telegram_id', 'email', 'description')
+
+
+class CreateOfferSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Offer
+        fields = ('id', 'course', 'telegram_id', 'email', 'description')
