@@ -19,7 +19,7 @@ class Request(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.course)
+        return str(self.course) + " " + str(self.student)
 
 
 class Offer(models.Model):
@@ -31,4 +31,4 @@ class Offer(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.course)
+        return str(self.course) + " " + str(self.instructor)

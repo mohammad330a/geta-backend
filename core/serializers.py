@@ -11,10 +11,10 @@ from .models import Request, Offer
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ('student', 'course', 'telegram_id', 'email', 'description')
+        fields = ('id', 'student', 'course', 'telegram_id', 'email', 'description')
 
 
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('student', 'course', 'telegram_id', 'email', 'description')
+        fields = ('id', 'student', 'course', 'telegram_id', 'email', 'description')
