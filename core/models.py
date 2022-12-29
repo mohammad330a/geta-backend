@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import User
 
 
 class Course(models.Model):
@@ -10,13 +10,15 @@ class Course(models.Model):
         return self.name
 
 
+
 class Request(models.Model):
     student = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50 , default='')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.course
@@ -24,11 +26,12 @@ class Request(models.Model):
 
 class Offer(models.Model):
     instructor = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50 , default = '')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.course
