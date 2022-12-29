@@ -1,27 +1,28 @@
 from .models import Request, Offer
-from .serializers import RequestSerializer, OfferSerializer
+from .serializers import RequestSerializer, OfferSerializer, CreateRequestSerializer
 from rest_framework import generics, permissions
-from django.shortcuts import get_object_or_404
-from accounts.models import User
-
 
 
 class RequestList(generics.ListAPIView):
-    queryset = Request.objects.all()
+    permission_classes = (permissions.IsAuthenticated, )
     serializer_class = RequestSerializer
+
+    def get_queryset(self):
+        return Request.objects.filter(student=self.request.user)
 
 
 class RequestCreate(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+    serializer_class = CreateRequestSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
-    # def perform_create(self, serializer):
-    #     student = get_object_or_404(User, id=self.request.data.get('username'))
-    #     return serializer.save(student=student)
+    def perform_create(self, serializer):
+        return serializer.save(student=self.request.user)
 
 
 class RequestRetrieve(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
@@ -33,34 +34,45 @@ class RequestUpdate(generics.UpdateAPIView):
 
 
 class RequestDestroy(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
-    permission_classes = (permissions.IsAuthenticated, )
 
 
 class OfferList(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
+    def get_queryset(self):
+        return Offer.objects.filter(instructor=self.request.user)
+
 
 class OfferCreate(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
+    def perform_create(self, serializer):
+        return serializer.save(instructor=self.request.user)
+
 
 class OfferRetrieve(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
 
 class OfferUpdate(generics.UpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
     permission_classes = (permissions.IsAuthenticated, )
 
 
 class OfferDestroy(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
     permission_classes = (permissions.IsAuthenticated, )
