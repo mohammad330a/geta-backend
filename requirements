@@ -13,3 +13,6 @@ djangorestframework-simplejwt==5.2.2
 
 # CORS
 django-cors-headers==3.13.0
+
+# Database
+psycopg2==2.9.5
