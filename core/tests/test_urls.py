@@ -35,3 +35,7 @@ class UrlTest(TestCase):
     def testUserOfferList(self):
         url = reverse('UserOfferList')
         self.assertEqual(resolve(url).func.view_class, UserOfferList)
+
+    def testOfferCreate(self):
+        url = reverse('OfferCreate')
+        self.assertEqual(resolve(url).func.view_class, OfferCreate)
