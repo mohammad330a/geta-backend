@@ -30,8 +30,8 @@ urlpatterns = [
     path('offer/<int:pk>/', OfferRetrieve.as_view(), name='OfferRetrieve'),
     path('offer/update/<int:pk>/', OfferUpdate.as_view(), name='OfferUpdate'),
     path('offer/destroy/<int:pk>/', OfferDestroy.as_view(), name='OfferDestroy'),
-    path('course/', CourseList.as_view(),'CourseList'),
-    path('course/<int:pk>/', CourseRetrieve.as_view(),'CourseRetrieve'),
+    path('course/', CourseList.as_view(),name='CourseList'),
+    path('course/<int:pk>/', CourseRetrieve.as_view(),name ='CourseRetrieve'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
