@@ -12,23 +12,25 @@ class Course(models.Model):
 
 class Request(models.Model):
     student = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50, default='')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.course
+        return str(self.course) + " " + str(self.student)
 
 
 class Offer(models.Model):
     instructor = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50, default='')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.course
+        return str(self.course) + " " + str(self.instructor)
