@@ -17,6 +17,10 @@ class UrlTest(TestCase):
         self.assertEquals(resolve(url).func.view_class, RequestCreate)
 
     def testRequestRetrieve(self):
-        self.testRequestCreate()
         url = reverse('RequestRetrieve', kwargs={'pk':1})
         self.assertEquals(resolve(url).func.view_class, RequestRetrieve)
+    
+    def testRequestUpdate(self):
+        url = reverse('RequestUpdate')
+        self.assertEqual(resolve(url).func.view_class, RequestUpdate)
+
