@@ -43,3 +43,7 @@ class UrlTest(TestCase):
     def testOfferRetrieve(self):
         url = reverse('OfferRetrieve', kwargs={'pk':1145})
         self.assertEqual(resolve(url).func.view_class, OfferRetrieve)
+
+    def testOfferUpdate(self):
+        url = reverse('OfferUpdate', kwargs={'pk':77890})
+        self.assertEqual(resolve(url).func.view_class, OfferUpdate)
