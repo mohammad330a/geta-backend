@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:12.6-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+    env_file:
+      - ./software_design_backend/.env
+  geta-backend:
+    build: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  database:
