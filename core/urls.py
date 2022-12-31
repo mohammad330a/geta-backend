@@ -1,6 +1,20 @@
 from django.urls import path
-from .views import RequestList, UserRequestList, RequestCreate, RequestRetrieve, RequestUpdate, RequestDestroy, \
-    OfferList, UserOfferList, OfferCreate, OfferRetrieve, OfferUpdate, OfferDestroy
+from .views import (
+    RequestList,
+    UserRequestList,
+    RequestCreate,
+    RequestRetrieve,
+    RequestUpdate,
+    RequestDestroy,
+    OfferList,
+    UserOfferList,
+    OfferCreate,
+    OfferRetrieve,
+    OfferUpdate,
+    OfferDestroy,
+    CourseList,
+    CourseRetrieve
+)
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
@@ -16,6 +30,8 @@ urlpatterns = [
     path('offer/<int:pk>/', OfferRetrieve.as_view()),
     path('offer/update/<int:pk>/', OfferUpdate.as_view()),
     path('offer/destroy/<int:pk>/', OfferDestroy.as_view()),
+    path('course/', CourseList.as_view()),
+    path('course/<int:pk>/', CourseRetrieve.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

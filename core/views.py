@@ -79,7 +79,7 @@ class UserOfferList(generics.ListAPIView):
 class OfferCreate(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated, )
     queryset = Offer.objects.all()
-    serializer_class = OfferSerializer
+    serializer_class = UserOfferSerializer
 
     def perform_create(self, serializer):
         return serializer.save(instructor=self.request.user)
