@@ -1,4 +1,4 @@
-# GeTa Backend
+# GeTA Backend
 
 ## steps to run server
 
