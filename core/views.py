@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from .models import Request, Offer, Course
 from .serializers import RequestSerializer, OfferSerializer,\
     UserRequestSerializer, UserOfferSerializer, CourseSerializer
-
+from .permissions import IsInstructor,IsStudent
 
 class CourseList(generics.ListAPIView):
     queryset = Course.objects.all()
@@ -15,13 +15,13 @@ class CourseRetrieve(generics.RetrieveAPIView):
 
 
 class RequestList(generics.ListAPIView):
-    # permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
 
 class UserRequestList(generics.ListAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     serializer_class = RequestSerializer
 
     def get_queryset(self):
@@ -29,7 +29,7 @@ class UserRequestList(generics.ListAPIView):
 
 
 class RequestCreate(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Request.objects.all()
     serializer_class = UserRequestSerializer
 
@@ -38,22 +38,21 @@ class RequestCreate(generics.CreateAPIView):
 
 
 class RequestRetrieve(generics.RetrieveAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
 
 class RequestUpdate(generics.UpdateAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((IsStudent, ))
     queryset = Request.objects.all()
     serializer_class = UserRequestSerializer
 
     def perform_create(self, serializer):
         return serializer.save(student=self.request.user)
 
-
 class RequestDestroy(generics.DestroyAPIView):
-    # permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((IsStudent,))
     queryset = Request.objects.all()
     serializer_class = UserRequestSerializer
 
@@ -62,13 +61,13 @@ class RequestDestroy(generics.DestroyAPIView):
 
 
 class OfferList(generics.ListAPIView):
-    # permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
 
 class UserOfferList(generics.ListAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Offer.objects.all()
     serializer_class = UserOfferSerializer
 
@@ -77,7 +76,7 @@ class UserOfferList(generics.ListAPIView):
 
 
 class OfferCreate(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Offer.objects.all()
     serializer_class = UserOfferSerializer
 
@@ -86,13 +85,13 @@ class OfferCreate(generics.CreateAPIView):
 
 
 class OfferRetrieve(generics.RetrieveAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((permissions.IsAuthenticated, ))
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
 
 class OfferUpdate(generics.UpdateAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((IsInstructor, ))
     queryset = Offer.objects.all()
     serializer_class = UserOfferSerializer
 
@@ -101,7 +100,7 @@ class OfferUpdate(generics.UpdateAPIView):
 
 
 class OfferDestroy(generics.DestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = ((IsInstructor, ))
     queryset = Offer.objects.all()
     serializer_class = UserOfferSerializer
 
