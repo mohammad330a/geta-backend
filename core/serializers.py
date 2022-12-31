@@ -1,14 +1,20 @@
 from rest_framework import serializers
-from .models import Request, Offer
+from .models import Request, Offer, Course
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
 
 
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ('id', 'student', 'course', 'telegram_id', 'email', 'description')
+        fields = '__all__'
 
 
-class CreateRequestSerializer(serializers.ModelSerializer):
+class UserRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
         fields = ('id', 'course', 'telegram_id', 'email', 'description')
@@ -17,10 +23,10 @@ class CreateRequestSerializer(serializers.ModelSerializer):
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('id', 'instructor', 'course', 'telegram_id', 'email', 'description')
+        fields = '__all__'
 
 
-class CreateOfferSerializer(serializers.ModelSerializer):
+class UserOfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = ('id', 'course', 'telegram_id', 'email', 'description')
