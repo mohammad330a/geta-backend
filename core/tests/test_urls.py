@@ -17,15 +17,15 @@ class UrlTest(TestCase):
         self.assertEquals(resolve(url).func.view_class, RequestCreate)
 
     def testRequestRetrieve(self):
-        url = reverse('RequestRetrieve', kwargs={'pk':1})
+        url = reverse('RequestRetrieve', kwargs={'pk':778})
         self.assertEquals(resolve(url).func.view_class, RequestRetrieve)
     
     def testRequestUpdate(self):
-        url = reverse('RequestUpdate', kwargs={'pk':1})
+        url = reverse('RequestUpdate', kwargs={'pk':0})
         self.assertEqual(resolve(url).func.view_class, RequestUpdate)
         
     def testRequestDestroy(self):
-        url = reverse('RequestDestroy', kwargs={'pk':1})
+        url = reverse('RequestDestroy', kwargs={'pk':1225})
         self.assertEqual(resolve(url).func.view_class, RequestDestroy)
 
     def testOfferList(self):
@@ -39,3 +39,7 @@ class UrlTest(TestCase):
     def testOfferCreate(self):
         url = reverse('OfferCreate')
         self.assertEqual(resolve(url).func.view_class, OfferCreate)
+    
+    def testOfferRetrieve(self):
+        url = reverse('OfferRetrieve', kwargs={'pk':1145})
+        self.assertEqual(resolve(url).func.view_class, OfferRetrieve)
