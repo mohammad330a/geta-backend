@@ -8,4 +8,9 @@ class UrlTest(TestCase):
         url = reverse('RequestList')
         print(url)
         self.assertEquals(resolve(url).func.view_class, RequestList)
+        
+    def testRequestList(self):
+        url = reverse('UserRequestList')
+        print(url)
+        self.assertEquals(resolve(url).func.view_class, UserRequestList)
 
