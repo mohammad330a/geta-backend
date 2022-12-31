@@ -21,6 +21,9 @@ class UrlTest(TestCase):
         self.assertEquals(resolve(url).func.view_class, RequestRetrieve)
     
     def testRequestUpdate(self):
-        url = reverse('RequestUpdate')
+        url = reverse('RequestUpdate', kwargs={'pk':1})
         self.assertEqual(resolve(url).func.view_class, RequestUpdate)
-
+        
+    def testRequestDestroy(self):
+        url = reverse('RequestDestroy', kwargs={'pk':1})
+        self.assertEqual(resolve(url).func.view_class, RequestDestroy)
