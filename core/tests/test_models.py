@@ -21,7 +21,7 @@ class ModelTest(TestCase):
         self.assertTrue(isinstance(request.created,datetime))
         
     
-    def testOffrrModel(self):
+    def testOfferModel(self):
         course = Course.objects.create(name="LinearAlgebra")
         user = User.objects.create()
         offer = Offer.objects.create(instructor= user, course= course, email="saleh@gmail.com", created= datetime.now())
