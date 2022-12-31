@@ -12,6 +12,7 @@ class Course(models.Model):
 
 class Request(models.Model):
     student = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50, default='')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
@@ -24,6 +25,7 @@ class Request(models.Model):
 
 class Offer(models.Model):
     instructor = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=50, default='')
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
