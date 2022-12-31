@@ -8,10 +8,15 @@ class UrlTest(TestCase):
         url = reverse('RequestList')
         self.assertEquals(resolve(url).func.view_class, RequestList)
         
-    def testRequestList(self):
+    def testUserRequestList(self):
         url = reverse('UserRequestList')
         self.assertEquals(resolve(url).func.view_class, UserRequestList)
 
-    def testRequestList(self):
+    def testRequestCreate(self):
         url = reverse('RequestCreate')
         self.assertEquals(resolve(url).func.view_class, RequestCreate)
+
+    def testRequestRetrieve(self):
+        self.testRequestCreate()
+        url = reverse('RequestRetrieve', kwargs={'pk':1})
+        self.assertEquals(resolve(url).func.view_class, RequestRetrieve)
