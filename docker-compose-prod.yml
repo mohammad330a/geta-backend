@@ -8,12 +8,15 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     env_file:
-      - ./software_design_backend/.env
+      - ./software_design_backend/settings/.env
   geta-backend:
     build: .
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; gunicorn --workers 3 --timeout 1200 --bind 0.0.0.0:8000 software_design_backend.wsgi'
     volumes:
       - .:/code
+      - static_volume:/code/static
+    environment:
+      - DJANGO_SETTINGS_MODULE=software_design_backend.settings.production
     expose:
       - "8000"
     depends_on:
