@@ -8,7 +8,7 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     env_file:
-      - ./software_design_backend/.env
+      - ./software_design_backend/settings/.env
   geta-backend:
     build: .
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
@@ -16,6 +16,8 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=software_design_backend.settings.development
     depends_on:
       - db
 volumes:
