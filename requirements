@@ -17,3 +17,6 @@ django-cors-headers==3.13.0
 
 # Database
 psycopg2==2.9.5
+
+# Gunicorn
+gunicorn==20.1.0
