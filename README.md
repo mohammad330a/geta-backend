@@ -1,14 +1,24 @@
 # GeTA Backend
 
-## steps to run server
+## run server
 
-1. first you need `.env` file in `./software_design_backend/` with following fields:
+- first you need `.env` file in `./software_design_backend/` with following fields:
     `SECRET_KEY`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`
 
+  
+- run following commands to start project for development
 
-2. run following commands to run docker and migrate database
-```
-docker-compose build
-docker-compose up
-docker-compose exec geta-backend python manage.py migrate
-```
+    ```
+    docker-compose build
+    docker-compose up
+    docker-compose exec geta-backend python manage.py migrate
+    ```
+
+- run following commands to start project for production
+
+    ```
+    docker-compose -f docker-compose-prod.yml build
+    docker-compose -f docker-compose-prod.yml up
+    docker-compose -f docker-compose-prod.yml exec geta-backend python manage.py migrate
+    docker-compose -f docker-compose-prod.yml exec geta-backend python manage.py collectstatic
+    ```
