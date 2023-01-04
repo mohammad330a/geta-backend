@@ -9,9 +9,11 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class RequestSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='student.username')
+
     class Meta:
         model = Request
-        fields = '__all__'
+        fields = ('id', 'student', 'topic', 'course', 'telegram_id', 'email', 'description', 'created', 'username')
 
 
 class UserRequestSerializer(serializers.ModelSerializer):
@@ -21,9 +23,11 @@ class UserRequestSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='instructor.username')
+
     class Meta:
         model = Offer
-        fields = '__all__'
+        fields = ('id', 'instructor', 'topic', 'course', 'telegram_id', 'email', 'description', 'created', 'username')
 
 
 class UserOfferSerializer(serializers.ModelSerializer):
