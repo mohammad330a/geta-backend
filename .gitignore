@@ -14,3 +14,7 @@ venv
 
 # environment variables file
 software_design_backend/.env
+
+# static and media files
+static
+media
